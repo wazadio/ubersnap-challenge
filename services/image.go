@@ -12,14 +12,14 @@ import (
 type imageService struct{}
 
 type ImageService interface {
-	ConvertPNGToJPG(file multipart.File, fileHeader multipart.FileHeader) (jpgImage []byte, err error)
+	ConvertPNGToJPG(file multipart.File, fileHeader *multipart.FileHeader) (jpgImage []byte, err error)
 }
 
 func NewImageService() ImageService {
 	return &imageService{}
 }
 
-func (s *imageService) ConvertPNGToJPG(file multipart.File, fileHeader multipart.FileHeader) (jpgImage []byte, err error) {
+func (s *imageService) ConvertPNGToJPG(file multipart.File, fileHeader *multipart.FileHeader) (jpgImage []byte, err error) {
 	defer file.Close()
 
 	// Decode the file data into an image
